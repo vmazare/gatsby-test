@@ -1,26 +1,22 @@
 import Link from 'gatsby-link'
 import qs from 'qs'
-import { addUrlProps, UrlQueryParamTypes } from 'react-url-query';
-import React, { Component } from 'react';
-
-const urlPropsQueryConfig = {
-  foo: { type: UrlQueryParamTypes.string }
-};
+import classnames from 'classnames'
+import React, { Component } from 'react'
+import styles from './../styles/page-2.module.css'
 
 export class SecondPage extends Component {
 	render() {
-		console.log('foo__', foo);
-		const {foo} = this.props;
-		if(!foo) {
-			return (
-				<div style={{backgroundColor: 'red'}}>No foo!</div>
-			);	
-		}
-		return <div style={{backgroundColor: 'green'}}>Yes foo!</div>
+		const {location: {search}} = this.props
+		const foo = search && qs.parse(search, { ignoreQueryPrefix: true }).foo
 		
+		// foo is always truthy
+		console.log('foo', foo);
+		
+		const className = classnames(styles.box, foo ? styles.img : styles.color)
+		return <div className={className}></div>
 	}
 }
 
 
 
-export default addUrlProps({ urlPropsQueryConfig })(SecondPage);
+export default SecondPage
