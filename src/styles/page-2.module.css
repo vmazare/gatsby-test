@@ -1,0 +1,13 @@
+.box {
+	width: 850px;
+	height: 850px;
+
+	&.img {
+		background: url('./../images/bg.png');
+		background-repeat: no-repeat;
+	}
+
+	&.color {
+		background-color: red;
+	}
+}
